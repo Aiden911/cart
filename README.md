@@ -1,11 +1,8 @@
-## 安裝與設置
 
-```sh
-git clone https://github.com/Aiden911/cart.git
-cd cart
-npm install
-npm run dev
-```
+# Vue Shopping Cart
+
+一個使用 Vue.js 開發的購物車網站，提供響應式商品展示、搜尋功能及購物車管理系統。
+
 ## 使用技術
 |  類別   | 技術  |
 |  ----  | ----  |
@@ -13,9 +10,28 @@ npm run dev
 | UI/UX | 響應式設計, 動畫效果 |
 | 開發工具 | Vite, Git |
 
+## 網站架構圖
+```
+shopping-cart/
+│
+├── src/
+│   ├── assets/          # 靜態資源
+│   ├── components/      # 組件
+│   └── App.vue         # 主應用
+│
+└── package.json        # 專案配置
 ```
 
+## 安裝說明
+```bash
+git clone https://github.com/Aiden911/cart.git
+cd cart
+npm install
+npm run dev
 ```
+
+## 功能說明
+
 ### 一、商品瀏覽
 
 #### 1. 商品列表頁面
@@ -76,5 +92,29 @@ npm run dev
 * 確認購物車內容無誤
 * 點擊「訂單結帳」按鈕
 * 系統顯示訂單完成提示
+
+## 操作注意事項
+
+### 1. 操作建議
+* 商品數量變更會即時更新金額
+* 移除商品前建議再次確認
+* 請在瀏覽器支援下使用
+
+### 2. 使用限制
+* 商品補貨中無法購買
+* 購物車商品數量上限為 99
+* 請在網路穩定時進行結帳
+
+## 開發團隊
+前端開發：Aiden
+- GitHub: [@your-username](https://github.com/Aiden911)
+- Email:forest1991911@gmail.com
+
+## 版本資訊
+* v1.0.0 (2024-10-27)
+  - 完成基礎購物車功能
+  - 實現商品搜尋功能
+  - 新增商品動畫效果
+
 
 
