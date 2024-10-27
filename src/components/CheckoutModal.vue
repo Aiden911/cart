@@ -208,7 +208,7 @@ export default {
       this.validateField('phone')
       this.validateField('address')
 
-      // 檢查是否有任何錯誤
+     
       if (Object.values(this.errors).some(error => error !== '')) {
         isValid = false
       }
@@ -225,25 +225,23 @@ export default {
       this.$emit('close')
     },
     handleSubmit() {
-      // 檢查購物車
+    
       if (this.cartItems.length === 0) {
         return;
       }
 
-      // 驗證表單
+    
       if (!this.validateForm()) {
         alert('請填寫完整的訂購資料');
         return;
       }
 
-      // 發送訂單資料
       this.$emit('submit', {
         orderItems: this.cartItems,
         totalAmount: this.total,
         customerInfo: { ...this.formData }
       });
 
-      // 重置表單
       this.resetForm();
     },
     resetForm() {

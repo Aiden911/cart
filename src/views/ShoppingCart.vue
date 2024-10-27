@@ -62,7 +62,6 @@
     </nav>
 
     <div class="pin">
-      <!-- 主要內容 -->
       <main class="main-content">
         <!-- Banner -->
         <div class="banner">
@@ -282,7 +281,6 @@ export default {
         });
       }
 
-      // 只顯示提示，不打開購物車
       this.showCustomAlert("已加入購物車", "", "確定", "success");
     },
 
@@ -291,7 +289,6 @@ export default {
       if (this.cartItems.length === 0) {
         this.showCart = false;
       }
-      // 購物車中刪除不顯示提示
     },
 
     updateQuantity(index, change) {
@@ -343,7 +340,6 @@ export default {
       if (this.cartItems.length === 0) {
         this.showCheckoutModal = false;
       }
-      // 訂購單頁面刪除時顯示提示
       this.showCustomAlert("已移除商品", "", "確定", "success");
     },
   },
@@ -355,7 +351,6 @@ export default {
 .shopping {
   width: 100%;
 
-  // 導航欄
   .nav {
     width: 100%;
     height: 60px;
@@ -418,7 +413,6 @@ export default {
     }
   }
 
-  // 購物車彈窗
   .cart-modal {
     position: fixed;
     top: 0;
@@ -590,7 +584,6 @@ export default {
     }
   }
 
-  // 主要內容區
   .main-content {
     width: 100%;
     padding-top: 60px;
@@ -798,7 +791,6 @@ export default {
     }
   }
 
-  // RWD
   @media screen and (max-width: 768px) {
     .nav {
       height: 50px;

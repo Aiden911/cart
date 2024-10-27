@@ -43,7 +43,6 @@ export default {
         const firstImage = document.querySelector(".first-image");
         const secondImage = document.querySelector(".second-image");
 
-        // 創建主時間軸
         const tl = window.gsap.timeline({
           scrollTrigger: {
             trigger: ".pin",
@@ -57,8 +56,6 @@ export default {
           },
         });
         
-
-        // 第一張圖片只放大，不變透明
         tl.set(firstImage, {
           opacity: 1,
           scale: 1,
@@ -77,7 +74,6 @@ export default {
             ease: "none",
           });
 
-        // 第二張圖片在第一張放大到一定程度後出現
         tl.fromTo(
           secondImage,
           {
@@ -171,7 +167,7 @@ export default {
       height: 100%;
       top: 0;
       left: 0;
-      opacity: 1; // 保持完全不透明
+      opacity: 1; 
       transform: translateZ(0);
       object-fit: contain;
       backface-visibility: hidden;
@@ -187,12 +183,11 @@ export default {
       max-height: 80vh;
       opacity: 0;
       object-fit: contain;
-      z-index: 1; // 確保在第一張圖片上方
+      z-index: 1; 
     }
   }
 }
 
-// 確保內容不會有不必要的滾動
 html,
 body {
   overflow-x: hidden;

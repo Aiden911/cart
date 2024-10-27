@@ -8,7 +8,7 @@
 |  ----  | ----  |
 | 前端  | Vue 3, SCSS, CSS Animation |
 | UI/UX | 響應式設計, 動畫效果 |
-| 開發工具 | Vite, Git |
+| 開發工具 | Vite, Git, Figma |
 
 ## 網站架構圖
 ```

@@ -103,7 +103,6 @@ export default {
 .footer-content {
   width: 100%;
   background: linear-gradient(to bottom, #052241 31%, #0B396A 100%);
-  // padding: 3rem 5vw;
   box-sizing: border-box;
   
   .container {
