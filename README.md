@@ -1,11 +1,4 @@
 
-## 安裝說明
-```bash
-git clone https://github.com/Aiden911/cart.git
-cd cart
-npm install
-npm run dev
-```
 # Vue Shopping Cart
 
 一個使用 Vue.js 開發的購物車網站，提供響應式商品展示、搜尋功能及購物車管理系統。
@@ -29,9 +22,12 @@ shopping-cart/
 └── package.json        # 專案配置
 ```
 
-## 設計圖
+## 安裝說明
 ```bash
-https://www.figma.com/design/FqRdwJZVTT8hSSnDtfx7EQ/Untitled?node-id=50-573&t=B0ZhNq5I9tEwW1mc-1
+git clone https://github.com/Aiden911/cart.git
+cd cart
+npm install
+npm run dev
 ```
 
 ## 功能說明
