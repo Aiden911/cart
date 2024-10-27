@@ -227,14 +227,13 @@ export default {
     handleSubmit() {
       // 檢查購物車
       if (this.cartItems.length === 0) {
-        alert('購物車內沒有商品')
-        return
+        return;
       }
 
       // 驗證表單
       if (!this.validateForm()) {
-        alert('請填寫完整的訂購資料')
-        return
+        alert('請填寫完整的訂購資料');
+        return;
       }
 
       // 發送訂單資料
@@ -242,10 +241,10 @@ export default {
         orderItems: this.cartItems,
         totalAmount: this.total,
         customerInfo: { ...this.formData }
-      })
+      });
 
       // 重置表單
-      this.resetForm()
+      this.resetForm();
     },
     resetForm() {
       this.formData = {
@@ -264,7 +263,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .modal-overlay {

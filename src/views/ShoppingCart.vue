@@ -5,7 +5,7 @@
       <div class="container">
         <div class="nav-content">
           <button class="cart-btn" @click="showCart = true">
-            <i class="fas fa-shopping-cart"></i>
+            <img src="@/assets/image/car.png" alt="cart" class="cart-icon" />
             購物車
             <span class="cart-count" v-if="cartItems.length">{{
               cartItems.length
@@ -72,7 +72,11 @@
         <!-- 搜尋欄 -->
         <div class="search-wrapper">
           <div class="search-input-wrapper">
-            <i class="fas fa-search search-icon"></i>
+            <img
+              src="@/assets/image/magnifier.png"
+              alt="search"
+              class="search-icon"
+            />
             <input
               type="text"
               v-model="searchQuery"
@@ -99,7 +103,11 @@
                     <p class="product-description">{{ product.description }}</p>
                   </div>
                   <button class="add-to-cart" @click.stop="addToCart(product)">
-                    <i class="fas fa-shopping-cart"></i>
+                    <img
+                      src="@/assets/image/car.png"
+                      alt="cart"
+                      class="cart-icon"
+                    />
                     加入購物車
                   </button>
                 </div>
@@ -113,11 +121,9 @@
         </div>
       </main>
 
-      <!-- 頁尾 -->
       <FooterComponents />
     </div>
 
-    <!-- 結帳燈箱 -->
     <CheckoutModal
       v-if="showCheckoutModal"
       :cart-items="cartItems"
@@ -126,6 +132,15 @@
       @submit="handleOrderSubmit"
       @remove-item="handleRemoveItem"
     />
+
+    <CustomAlert
+      :show="showAlert"
+      :title="alertTitle"
+      :message="alertMessage"
+      :confirm-text="alertConfirmText"
+      :type="alertType"
+      @close="handleAlertClose"
+    />
   </div>
 </template>
 
@@ -133,13 +148,15 @@
 import FooterComponents from "@/components/FooterComponents.vue";
 import BnnerComponents from "@/components/BnnerComponents.vue";
 import CheckoutModal from "@/components/CheckoutModal.vue";
+import CustomAlert from "@/components/CustomAlert.vue";
 
 export default {
-  name: "ShoppingPage",
+  name: "ShoppingCart",
   components: {
     FooterComponents,
     BnnerComponents,
     CheckoutModal,
+    CustomAlert,
   },
   data() {
     return {
@@ -147,12 +164,18 @@ export default {
       showCheckoutModal: false,
       searchQuery: "",
       cartItems: [],
+      showAlert: false,
+      alertTitle: "",
+      alertMessage: "",
+      alertConfirmText: "確定",
+      alertType: "",
       products: [
         {
           id: 1,
           name: "經典咖啡杯",
           price: 150,
-          description: "經典設計的陶瓷咖啡杯，容量300ml，適合日常使用，享受美好咖啡時光。",
+          description:
+            "經典設計的陶瓷咖啡杯，容量300ml，適合日常使用，享受美好咖啡時光。",
           status: "現貨",
           image: require("@/assets/image/coffercup.png"),
         },
@@ -160,7 +183,8 @@ export default {
           id: 2,
           name: "無線滑鼠",
           price: 500,
-          description: "符合人體工學設計的無線滑鼠，擁有穩定的光學感應和10米的無線範圍，長時間使用舒適。",
+          description:
+            "符合人體工學設計的無線滑鼠，擁有穩定的光學感應和10米的無線範圍，長時間使用舒適。",
           status: "現貨",
           image: require("@/assets/image/mouse.png"),
         },
@@ -168,7 +192,8 @@ export default {
           id: 3,
           name: "藍牙耳機",
           price: 1200,
-          description: "高音質藍牙耳機，配備藍牙5.0技術，10小時續航，支持語音助手，輕鬆連接。",
+          description:
+            "高音質藍牙耳機，配備藍牙5.0技術，10小時續航，支持語音助手，輕鬆連接。",
           status: "現貨",
           image: require("@/assets/image/earphone.png"),
         },
@@ -176,7 +201,8 @@ export default {
           id: 4,
           name: "雙肩背包",
           price: 850,
-          description: "防水耐用的雙肩背包，20L容量，內含筆電隔層，適合日常通勤或旅行攜帶。",
+          description:
+            "防水耐用的雙肩背包，20L容量，內含筆電隔層，適合日常通勤或旅行攜帶。",
           status: "現貨",
           image: require("@/assets/image/bag.png"),
         },
@@ -184,7 +210,8 @@ export default {
           id: 5,
           name: "環保保溫杯",
           price: 300,
-          description: "不鏽鋼製環保保溫杯，500ml容量，8小時保溫，攜帶方便，隨時享受熱飲。",
+          description:
+            "不鏽鋼製環保保溫杯，500ml容量，8小時保溫，攜帶方便，隨時享受熱飲。",
           status: "現貨",
           image: require("@/assets/image/thermoscup.png"),
         },
@@ -192,7 +219,8 @@ export default {
           id: 6,
           name: "便攜式充電寶",
           price: 600,
-          description: "10000mAh容量的便攜充電寶，支持快速充電，輕便設計，適合外出時隨身攜帶。",
+          description:
+            "10000mAh容量的便攜充電寶，支持快速充電，輕便設計，適合外出時隨身攜帶。",
           status: "現貨",
           image: require("@/assets/image/powerbank.png"),
         },
@@ -220,6 +248,23 @@ export default {
     },
   },
   methods: {
+    showCustomAlert(
+      title,
+      message = "",
+      confirmText = "確定",
+      type = "success"
+    ) {
+      this.alertTitle = title;
+      this.alertMessage = message;
+      this.alertConfirmText = confirmText;
+      this.alertType = type;
+      this.showAlert = true;
+    },
+
+    handleAlertClose() {
+      this.showAlert = false;
+    },
+
     addToCart(product) {
       const existingItem = this.cartItems.find(
         (item) => item.id === product.id
@@ -237,15 +282,18 @@ export default {
         });
       }
 
-      this.showCart = true;
+      // 只顯示提示，不打開購物車
+      this.showCustomAlert("已加入購物車", "", "確定", "success");
     },
+
     removeFromCart(index) {
       this.cartItems.splice(index, 1);
-      // 如果購物車空了自動關閉
       if (this.cartItems.length === 0) {
         this.showCart = false;
       }
+      // 購物車中刪除不顯示提示
     },
+
     updateQuantity(index, change) {
       const item = this.cartItems[index];
       const newQuantity = item.quantity + change;
@@ -256,43 +304,52 @@ export default {
         this.removeFromCart(index);
       }
     },
+
     checkout() {
       if (this.cartItems.length === 0) {
-        alert("購物車是空的");
+        this.showCustomAlert(
+          "購物車是空的",
+          "請先將商品加入購物車",
+          "確定",
+          "warning"
+        );
         return;
       }
-      // 關閉購物車,打開結帳視窗
       this.showCart = false;
       this.showCheckoutModal = true;
     },
+
     handleCloseCheckoutModal() {
       this.showCheckoutModal = false;
-      // 如果購物車還有商品,重新打開購物車視窗
       if (this.cartItems.length > 0) {
         this.showCart = true;
       }
     },
+
     handleOrderSubmit(orderData) {
       console.log("訂單資料：", orderData);
-      // 關閉結帳視窗
       this.showCheckoutModal = false;
-      // 清空購物車
       this.cartItems = [];
-      // 顯示成功訊息
-      alert("訂單已成功提交！");
+      this.showCustomAlert(
+        "訂單已成功提交！",
+        "感謝您的購買",
+        "確定",
+        "success"
+      );
     },
+
     handleRemoveItem(index) {
       this.cartItems.splice(index, 1);
-      // 如果購物車空了關閉結帳視窗
       if (this.cartItems.length === 0) {
         this.showCheckoutModal = false;
       }
+      // 訂購單頁面刪除時顯示提示
+      this.showCustomAlert("已移除商品", "", "確定", "success");
     },
   },
 };
+
 </script>
-
-
 
 <style lang="scss" scoped>
 .shopping {
@@ -336,8 +393,10 @@ export default {
             background-color: #0088cc;
           }
 
-          i {
-            font-size: 1.1rem;
+          .cart-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
           }
 
           .cart-count {
@@ -557,10 +616,12 @@ export default {
 
         .search-icon {
           position: absolute;
-          left: 15px;
+          left: 8%;
           top: 50%;
           transform: translateY(-50%);
-          color: rgba(255, 255, 255, 0.6);
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
         }
 
         .search-input {
@@ -623,12 +684,16 @@ export default {
               position: absolute;
               top: 0;
               left: 0;
-              background: #14183e;
+              background: #28349c;
               padding: 2% 4%;
-              border-radius: 10px 0 0 0;
+              border-radius: 10px 0 10px 0; 
               font-size: 12px;
               color: #fff;
               z-index: 2;
+              transform-origin: left top;
+              animation: tagAppear 0.5s ease-out;
+              transition: all 0.3s ease;
+              box-shadow: 0 0 10px rgba(20, 24, 62, 0.5);
             }
 
             .product-overlay {
@@ -694,8 +759,10 @@ export default {
                   color: #fff;
                 }
 
-                i {
-                  font-size: 14px;
+                .cart-icon {
+                  width: 16px;
+                  height: 16px;
+                  object-fit: contain;
                 }
               }
             }
@@ -739,6 +806,11 @@ export default {
       .cart-btn {
         padding: 6px 16px;
         font-size: 0.9rem;
+
+        .cart-icon {
+          width: 16px;
+          height: 16px;
+        }
       }
     }
 
@@ -749,8 +821,13 @@ export default {
     .main-content {
       padding-top: 50px;
 
-      .banner {
-        width: 100%;
+      .search-wrapper {
+        .search-input-wrapper {
+          .search-icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
       }
 
       .product-wrapper {
@@ -774,6 +851,11 @@ export default {
                   padding: 6px 16px;
                   font-size: 12px;
                   min-width: 100px;
+
+                  .cart-icon {
+                    width: 14px;
+                    height: 14px;
+                  }
                 }
               }
             }
@@ -810,4 +892,5 @@ export default {
     }
   }
 }
+
 </style>
