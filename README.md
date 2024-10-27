@@ -107,7 +107,7 @@ npm run dev
 
 ## 開發團隊
 前端開發：Aiden
-- GitHub: [@your-username](https://github.com/Aiden911)
+- GitHub: [@Aiden911](https://github.com/Aiden911)
 - Email:forest1991911@gmail.com
 
 ## 版本資訊
