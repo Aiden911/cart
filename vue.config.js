@@ -1,5 +1,5 @@
 {
-  "name": "my-vue-app",
+  "name": "cart",
   "version": "1.0.0",
   "private": true,
   "scripts": {
