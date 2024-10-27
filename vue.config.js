@@ -1,49 +1,48 @@
-// vue.config.js
-module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/<cart>/'  // 替換成你的 GitHub 儲存庫名稱
-    : '/',
-  outputDir: 'docs'  // 或使用 'dist'
+{
+  "name": "my-vue-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "gh-pages": "^3.1.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
-
-// // package.json 部署腳本
-// {
-//   "scripts": {
-//     "deploy": "npm run build && gh-pages -d docs"  // 如果 outputDir 是 dist，這裡改成 -d dist
-//   },
-//   "devDependencies": {
-//     "gh-pages": "^6.1.0"
-//   }
-// }
-
-// // 部署的 GitHub Action 工作流配置
-// // .github/workflows/deploy.yml
-// name: Deploy to GitHub Pages
-
-// on:
-//   push:
-//     branches:
-//       - main  # 或 master，視你的默認分支而定
-
-// jobs:
-//   deploy:
-//     runs-on: ubuntu-latest
-//     steps:
-//       - uses: actions/checkout@v3
-      
-//       - name: Setup Node.js
-//         uses: actions/setup-node@v3
-//         with:
-//           node-version: '18'
-          
-//       - name: Install dependencies
-//         run: npm install
-        
-//       - name: Build
-//         run: npm run build
-        
-//       - name: Deploy to GitHub Pages
-//         uses: peaceiris/actions-gh-pages@v3
-//         with:
-//           github_token: ${{ secrets.GITHUB_TOKEN }}
-//           publish_dir: ./docs  # 如果 outputDir 是 dist，這裡改成 ./dist
