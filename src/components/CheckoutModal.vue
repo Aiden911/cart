@@ -142,6 +142,14 @@ export default {
       }
     }
   },
+  mounted() {
+    // 禁用背景滾動
+    document.body.style.overflow = 'hidden'
+  },
+  beforeUnmount() {
+    // 組件卸載前恢復滾動
+    document.body.style.overflow = ''
+  },
   computed: {
     isFormValid() {
       return this.formData.name.trim() &&
@@ -204,7 +212,6 @@ export default {
     validateForm() {
       let isValid = true
       
-      // 驗證所有欄位
       this.validateField('name')
       this.validateField('email')
       this.validateField('phone')
@@ -223,6 +230,7 @@ export default {
       this.$emit('remove-item', index)
     },
     closeModal() {
+      document.body.style.overflow = '' // 關閉 modal 時恢復滾動
       this.$emit('close')
     },
     handleSubmit() {
@@ -266,13 +274,14 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  overflow: hidden;
 
   .modal-container {
     position: relative;
@@ -282,6 +291,25 @@ export default {
     border-radius: 8px;
     max-height: 90vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; // 增加 iOS 滾動順暢度
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 
     .close-btn {
       position: absolute;
@@ -298,6 +326,7 @@ export default {
       align-items: center;
       justify-content: center;
       transition: color 0.3s ease;
+      z-index: 1;
 
       &:hover {
         color: #ff4757;
@@ -425,6 +454,7 @@ export default {
       .form-actions {
         text-align: center;
         margin-top: 2rem;
+        margin-bottom: 1rem;
 
         .submit-btn {
           background: #00a9ff;

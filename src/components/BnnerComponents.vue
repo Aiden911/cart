@@ -156,11 +156,6 @@ export default {
       }
     }
 
-    @media screen and (max-width: 1024px) {
-      width: 95%;
-      margin: 10%;
-    }
-
     .first-image {
       position: absolute;
       width: 100%;
