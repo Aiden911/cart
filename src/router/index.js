@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'  // 改為 HashHistory
+import { createRouter, createWebHashHistory } from 'vue-router'
 import ShoppingCart from '../views/ShoppingCart.vue'
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),  // 改用 hash 模式，移除 BASE_URL
+  history: createWebHashHistory('/cart/'),  // 添加基礎路徑
   routes
 })
 
