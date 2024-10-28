@@ -2,6 +2,8 @@
   <div class="modal-overlay" @click.self="closeModal">
     <div class="modal-container">
       <div class="modal-content">
+        <button class="close-btn" @click="closeModal">×</button>
+        
         <h2 class="modal-title">訂單商品</h2>
         
         <!-- 訂單商品列表 -->
@@ -208,7 +210,6 @@ export default {
       this.validateField('phone')
       this.validateField('address')
 
-     
       if (Object.values(this.errors).some(error => error !== '')) {
         isValid = false
       }
@@ -225,12 +226,10 @@ export default {
       this.$emit('close')
     },
     handleSubmit() {
-    
       if (this.cartItems.length === 0) {
         return;
       }
 
-    
       if (!this.validateForm()) {
         alert('請填寫完整的訂購資料');
         return;
@@ -276,12 +275,34 @@ export default {
   z-index: 2000;
 
   .modal-container {
+    position: relative;
     background: white;
     width: 90%;
     max-width: 800px;
     border-radius: 8px;
     max-height: 90vh;
     overflow-y: auto;
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: none;
+      font-size: 24px;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #ff4757;
+      }
+    }
 
     .modal-content {
       padding: 2rem;
@@ -501,4 +522,3 @@ export default {
   }
 }
 </style>
-```
