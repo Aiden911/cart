@@ -27,7 +27,7 @@ shopping-cart/
 git clone https://github.com/Aiden911/cart.git
 cd cart
 npm install
-npm run dev
+npm run Sserve
 ```
 
 ## 功能說明
